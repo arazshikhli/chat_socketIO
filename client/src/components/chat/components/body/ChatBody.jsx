@@ -4,7 +4,7 @@ export const Chatbody = () => {
     return (
         <>
         <header className={styles.header}>
-            <button className={styles.header}
+            <button className={styles.btn}
             > Покинуть чат</button>
         </header>
         <div className={styles.container}>
