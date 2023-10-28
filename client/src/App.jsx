@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
 import socketIo from 'socket.io-client';
-import {ChatPage} from './components/chat/ChatPage.jsx'
+import {ChatPage} from './components/chat/components/ChatPage'
 import{HomePage} from './components/home/HomePage.jsx'
 
 const socket=socketIo.connect('http://localhost:3002')
