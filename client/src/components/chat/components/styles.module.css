@@ -3,8 +3,10 @@
     height: 100vh;
     display: flex;
     align-items: center;
+   
 }
 
 .main{
     flex: 2;
+ 
 }

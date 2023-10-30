@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from './styles.module.css';
 import {useNavigate} from 'react-router-dom'
-export const Chatbody = () => {
+
+
+export const Chatbody = ({messages}) => {
     const navigate=useNavigate()
     const handleLeave=()=>{
         localStorage.removeItem('user') 
@@ -18,18 +20,24 @@ export const Chatbody = () => {
             > Покинуть чат</button>
         </header>
         <div className={styles.container}>
-            <div className={styles.chats}>
+           {messages.map(element=>
+            element.name===localStorage.getItem('user')?(
+                <div className={styles.chats} key={element.id}>
                 <p className={styles.senderName1}>Вы</p>
                 <div className={styles.messageSender}>
-                    <p>Hello</p>
+                    <p>{element.text}</p>
                 </div>
             </div>
-            <div className={styles.chats}>
-                <p className={styles.senderName2}>Вы</p>
+            ):(
+                <div className={styles.chats} key={element.id}>
+                <p className={styles.senderName2}>{element.name}</p>
                 <div className={styles.messageRecipient}>
-                    <p>Hello</p>
+                    <p>{element.text}</p>
                 </div>
             </div>
+            )
+           )}
+          
         </div>
         </>
     )

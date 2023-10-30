@@ -9,8 +9,8 @@ export const HomePage = ({socket}) => {
       e.preventDefault()
       if(user.length>0){
         localStorage.setItem('user',user)
+      socket.emit('newUser',{user,socketID:socket.id})
       navigate('/chat')
-   
       }
 
       else{
@@ -19,7 +19,7 @@ export const HomePage = ({socket}) => {
       
     }
     return (
-      <form onSubmit={handleSubmit}
+      <form onSubmit={handleSubmit} 
       className={styles.container}
       >
         <h2>Вход в чат</h2>
