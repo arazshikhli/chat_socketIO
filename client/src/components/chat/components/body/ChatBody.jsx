@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import styles from './styles.module.css';
 import {useNavigate} from 'react-router-dom'
 
 
-export const Chatbody = ({messages}) => {
+export const Chatbody = ({messages,status}) => {
     const navigate=useNavigate()
+ 
+    
     const handleLeave=()=>{
         localStorage.removeItem('user') 
+    
         navigate('/')
     }
     return (
@@ -37,7 +40,9 @@ export const Chatbody = ({messages}) => {
             </div>
             )
            )}
-          
+          <div className={styles.status}>
+            <p>{status}...</p>
+          </div>
         </div>
         </>
     )

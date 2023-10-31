@@ -8,6 +8,13 @@ import styles from './styles.module.css'
 export const ChatPage = ({socket}) => {
    
     const [messages,setMessages]=useState([]);
+    const [status,setStatus]=useState();
+    useEffect(()=>{
+        socket.on('responseTyping',(data)=>{
+            setStatus(data)
+        setTimeout(()=>setStatus(''),1000)})
+        
+    },[socket])
     useEffect(()=>{
         
         socket.on('response',(data)=>
@@ -19,7 +26,7 @@ export const ChatPage = ({socket}) => {
         <div className={styles.chat}>
             <SideBar socket={socket}/>
             <main className={styles.main}>
-                <Chatbody messages={messages}/>
+                <Chatbody messages={messages} status={status}/>
                 <MessageBlock socket={socket}/>
             </main>
         </div>

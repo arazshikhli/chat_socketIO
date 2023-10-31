@@ -99,3 +99,9 @@ font-size: 13px;
     margin-left:auto;
     font-size: 15px;
 }
+.status{
+  position: fixed;
+  font-size: 13px;
+  font-style: italic;
+  bottom: 20px;
+}

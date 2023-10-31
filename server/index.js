@@ -6,6 +6,7 @@ const PORT=process.env.PORT
 
 const http=require('http').Server(app)
 const cors=require('cors')
+app.use(cors())
 const socketIO=require('socket.io')(http,{
     cors:{
         origin:'http://localhost:5173'
@@ -25,13 +26,14 @@ socketIO.on('connection',(socket)=>{
         console.log('Message:  ',data)
         socketIO.emit('response',data)
     })
+    socket.on('typing',(data)=>socket.broadcast.emit('responseTyping',data))
     socket.on('newUser',(data)=>{
         users.push(data)
-        socketIO.emit('responseNewUser',users)
+        socketIO.emit('responseNewUsers',users)
     })
     socket.on('disconnect',()=>{
         console.log(`${socket.id} disconnected`)
-
+        
     })
 })
 

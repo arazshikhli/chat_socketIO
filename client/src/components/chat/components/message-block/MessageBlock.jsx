@@ -5,6 +5,9 @@ export const MessageBlock = ({socket}) => {
 
     const [message,setMessage]=useState('')
 
+    const isTyping=()=>{
+        socket.emit('typing',`${localStorage.getItem('user')} is typing`)
+    }
     const handleSend=(e)=>{
         e.preventDefault();
        if(message.trim()&&localStorage.getItem('user')){
@@ -26,7 +29,9 @@ export const MessageBlock = ({socket}) => {
                 <input 
                 value={message}
                 onChange={(e)=>setMessage(e.target.value)}
-                type="text" className='user-message'/>
+                type="text" className='user-message'
+                onKeyDown={isTyping}
+                />
                 <button type='submit'
                 className={styles.btn}
                 >Сказать </button>
